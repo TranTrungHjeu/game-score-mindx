@@ -1,0 +1,676 @@
+@font-face {
+  font-family: 'Chakra Petch';
+  src: url('/fonts/ChakraPetch-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fz-Futurik';
+  src: url('/fonts/Fz-Futurik.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ========================================================
+     HỆ MÀU GIAO DIỆN MINDX LIGHT (FROST SLATE LIGHT - BẠCH KIM CÔNG NGHỆ)
+     Tỷ lệ 60 - 30 - 10 tối ưu tương phản cao nhất cho máy chiếu và phòng học
+     ======================================================== */
+
+  /* 60% - Màu Nền & Bề Mặt Chủ Đạo: Frost Slate & Pure White */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.94);
+  --bg-card-hover: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.82);
+  --bg-glass-strong: rgba(255, 255, 255, 0.96);
+
+  /* 30% - Màu Cấu Trúc, Viền & Typography (Secondary / Structural) */
+  --border-subtle: rgba(226, 232, 240, 0.95);
+  --border-medium: rgba(203, 213, 225, 0.9);
+  --border-focus: var(--primary);
+  --border-glow: rgba(227, 31, 38, 0.25);
+
+  --text-main: #0f172a;       /* Slate 900 - Đen than sắc nét, rõ ràng từ xa */
+  --text-muted: #475569;      /* Slate 600 - Xám đậm có độ tương phản cao */
+  --text-dim: #64748b;        /* Slate 500 - Xám trung tính */
+
+  /* 10% - Màu Nhấn Trọng Tâm Duy Nhất (Accent) */
+  /* Nhấn Thương Hiệu & Vinh Danh Duy Nhất: Alizarin Crimson (#E31F26) - Đỏ thương hiệu MindX */
+  --primary: #E31F26;
+  --primary-hover: #b9151b;
+  --primary-light: rgba(227, 31, 38, 0.08);
+
+  /* Đồng bộ toàn bộ điểm nhấn về đỏ MindX và trắng trung tính (bỏ màu mè) */
+  --accent-gold: #E31F26;
+  --accent-gold-light: rgba(227, 31, 38, 0.08);
+  --accent-cyan: #E31F26;
+
+  /* Hệ Thống Phân Bổ Font Gaming & Robotics Chuẩn Tiếng Việt */
+  --font-heading: 'Chakra Petch', 'Fz-Futurik', system-ui, sans-serif;   /* Font Mecha/Robotics/Esport mạnh mẽ cho tiêu đề & banner đấu trường */
+  --font-display: 'Fz-Futurik', system-ui, sans-serif;                   /* Font hình học công nghệ cho buttons, toolbar */
+  --font-body: 'Fz-Futurik', system-ui, sans-serif;                      /* Font hình học công nghệ cho toàn bộ UI và số */
+
+  /* Shadows & Glows trên nền sáng */
+  --glow-primary: 0 0 20px rgba(227, 31, 38, 0.25);
+  --glow-gold: 0 0 20px rgba(227, 31, 38, 0.25);
+  --shadow-card: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 4px 6px -2px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(226, 232, 240, 0.85);
+
+  /* Radius - Góc vuông dứt khoát phong cách Robotics / Esport Console (Tránh AI rounded look) */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 12% 15%, rgba(227, 31, 38, 0.04) 0%, transparent 45%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography Utilities */
+.font-game {
+  font-family: var(--font-heading);
+  letter-spacing: 0.04em;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Global Form Input Font Consistency */
+input,
+select,
+textarea,
+button {
+  font-family: var(--font-body);
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-family: var(--font-body);
+  color: var(--text-dim);
+  opacity: 0.7;
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes rotateAura {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes megaFlare {
+  0% {
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.6), 0 0 50px rgba(227, 31, 38, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+  }
+}
+
+.digital-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 2px dashed rgba(15, 23, 42, 0.16);
+  animation: rotateAura 18s linear infinite;
+  pointer-events: none;
+}
+
+/* Glass Card */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(203, 213, 225, 1);
+  box-shadow: 0 14px 30px -6px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(203, 213, 225, 0.9);
+}
+
+/* Button Styles */
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  font-size: 0.95rem;
+  user-select: none;
+}
+
+.btn-action:active {
+  transform: scale(0.96);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #E31F26 0%, #b9151b 100%);
+  color: #ffffff;
+  box-shadow: 0 6px 16px -2px rgba(227, 31, 38, 0.4);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #ff333a 0%, #E31F26 100%);
+  box-shadow: 0 8px 20px -2px rgba(227, 31, 38, 0.55);
+  transform: translateY(-1px);
+}
+
+.btn-cyan {
+  background: #ffffff;
+  color: var(--text-main);
+  border: 1px solid rgba(203, 213, 225, 0.95);
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.04);
+}
+
+.btn-cyan:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: var(--text-main);
+  border: 1px solid rgba(203, 213, 225, 0.95);
+}
+
+.btn-secondary:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.btn-score {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(203, 213, 225, 0.85);
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.btn-score:active {
+  transform: scale(0.94);
+}
+
+.btn-score-1 {
+  background: #ffffff;
+  color: var(--text-main);
+  border-color: rgba(203, 213, 225, 0.9);
+}
+
+.btn-score-1:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.btn-score-3 {
+  background: #ffffff;
+  color: var(--primary);
+  border-color: rgba(227, 31, 38, 0.4);
+}
+
+.btn-score-3:hover {
+  background: rgba(227, 31, 38, 0.06);
+  border-color: var(--primary);
+}
+
+.btn-score-5 {
+  background: linear-gradient(135deg, #E31F26 0%, #b9151b 100%);
+  color: #ffffff;
+  border-color: rgba(227, 31, 38, 0.6);
+  box-shadow: 0 4px 14px rgba(227, 31, 38, 0.35);
+}
+
+.btn-score-5:hover {
+  background: linear-gradient(135deg, #ff333a 0%, #E31F26 100%);
+  box-shadow: 0 6px 18px rgba(227, 31, 38, 0.55);
+  transform: translateY(-1px);
+}
+
+.btn-score-minus {
+  background: #ffffff;
+  color: #dc2626;
+  border-color: rgba(254, 202, 202, 0.9);
+}
+
+.btn-score-minus:hover {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-color: #f87171;
+}
+
+/* Badges */
+.badge-element {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: rgba(241, 245, 249, 0.9);
+  border: 1px solid rgba(203, 213, 225, 0.85);
+  color: var(--text-main);
+}
+
+.badge-level {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: rgba(241, 245, 249, 0.9);
+  border: 1px solid rgba(203, 213, 225, 0.85);
+  color: var(--text-muted);
+}
+
+/* Progress bar */
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(226, 232, 240, 0.95);
+  border-radius: 0px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 0px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: linear-gradient(90deg, #E31F26, #ff4d52);
+}
+
+/* Slim Minimalist Scrollbar (Thanh cuộn siêu gọn chiều ngang 4px) */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Arena Lanes (Đấu Trường Đối Kháng - Phương Án C) */
+.arena-lanes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.arena-lane {
+  position: relative;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 14px 22px;
+  display: grid;
+  grid-template-columns: 54px 114px 180px 1fr 95px auto;
+  align-items: center;
+  gap: 18px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-card);
+}
+
+.arena-lane.is-projector {
+  grid-template-columns: 60px 124px 220px 1fr 110px;
+  padding: 16px 26px;
+  gap: 22px;
+}
+
+.arena-lane:hover {
+  border-color: rgba(203, 213, 225, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px -6px rgba(15, 23, 42, 0.09), 0 0 0 1px rgba(203, 213, 225, 0.9);
+}
+
+.arena-lane.lane-rank-1 {
+  border-color: rgba(227, 31, 38, 0.4);
+  background: #ffffff;
+  box-shadow: 0 10px 25px -4px rgba(227, 31, 38, 0.08), 0 0 0 1px rgba(227, 31, 38, 0.2);
+}
+
+.arena-lane.lane-rank-2 {
+  border-color: var(--border-subtle);
+  background: #ffffff;
+}
+
+.arena-lane.lane-rank-3 {
+  border-color: var(--border-subtle);
+  background: #ffffff;
+}
+
+.lane-rank-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 0px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.45rem;
+  line-height: 1;
+  color: var(--text-main);
+  flex-shrink: 0;
+}
+
+.lane-rank-badge.rank-1 {
+  background: linear-gradient(135deg, #E31F26 0%, #b9151b 100%);
+  border-color: #E31F26;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(227, 31, 38, 0.3);
+}
+
+.lane-rank-badge.rank-2 {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+.lane-rank-badge.rank-3 {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+.lane-avatar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lane-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.lane-team-name {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.lane-mascot-status {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Khối Đặt Mục Tiêu Tiến Hóa Cho Học Sinh (Gamified Target Goal) */
+.lane-target-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.lane-target-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.86rem;
+  min-width: 0;
+}
+
+.lane-goal-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 0px;
+  background: rgba(241, 245, 249, 0.95);
+  border: 1px solid rgba(203, 213, 225, 0.85);
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 85px);
+}
+
+.lane-goal-pill.is-active-goal {
+  background: rgba(227, 31, 38, 0.08);
+  border-color: rgba(227, 31, 38, 0.25);
+  color: #b9151b;
+}
+
+.lane-goal-pill.is-max-level {
+  background: rgba(227, 31, 38, 0.08);
+  border-color: rgba(227, 31, 38, 0.25);
+  color: #b9151b;
+}
+
+.lane-energy-track {
+  width: 100%;
+  height: 14px;
+  background: rgba(226, 232, 240, 0.95);
+  border-radius: 0px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+.lane-energy-fill {
+  height: 100%;
+  border-radius: 0px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.lane-energy-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+  animation: shimmer 2s infinite linear;
+  background-size: 200% 100%;
+}
+
+.lane-score-box {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lane-score-number {
+  font-family: var(--font-body);
+  font-size: 2.7rem;
+  line-height: 1;
+  font-weight: 900;
+  color: var(--text-main);
+  letter-spacing: -0.04em;
+}
+
+.lane-score-number.is-leader {
+  color: #E31F26;
+  text-shadow: 0 2px 10px rgba(227, 31, 38, 0.2);
+}
+
+.lane-actions-grid {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1200px) {
+  .arena-lane {
+    grid-template-columns: 50px 96px 150px 1fr 85px auto;
+    gap: 14px;
+    padding: 12px 16px;
+  }
+  .arena-lane.is-projector {
+    grid-template-columns: 54px 106px 180px 1fr 95px;
+  }
+}
+
+@media (max-width: 900px) {
+  .arena-lane, .arena-lane.is-projector {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 16px;
+  }
+  .lane-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .lane-score-box {
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 10px;
+    align-items: baseline;
+  }
+  .lane-actions-grid {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* ============================================================
+   Digitama (Egg) & Negative Score Penalty Mechanics
+   ============================================================ */
+@keyframes eggWobble {
+  0% { transform: rotate(0deg) scale(1); }
+  20% { transform: rotate(-7deg) scale(1.03); }
+  45% { transform: rotate(6deg) scale(1.02); }
+  70% { transform: rotate(-4deg) scale(1.03); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+.animate-egg-wobble {
+  animation: eggWobble 2.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  transform-origin: 50% 85%;
+}
+
+.animate-egg-wobble:hover {
+  animation: eggWobble 0.7s ease-in-out infinite;
+}
+
+/* Negative Score Styling */
+.lane-score-number.is-negative {
+  color: #dc2626 !important;
+  letter-spacing: -0.02em;
+}
+
+.arena-lane.is-egg-mode {
+  border-left: 5px solid #ef4444 !important;
+  background: linear-gradient(90deg, rgba(254, 242, 242, 0.65) 0%, rgba(255, 255, 255, 0.98) 35%) !important;
+  box-shadow: inset 0 0 12px rgba(239, 68, 68, 0.06);
+}
+

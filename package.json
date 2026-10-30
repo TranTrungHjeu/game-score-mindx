@@ -1,47 +1,33 @@
 {
-  "name": "gamescore",
-  "version": "1.0.0",
+  "name": "gamescore-mindx",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:e2e": "playwright test"
-  },
+  "version": "0.0.0",
   "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "sync:sprites": "node scripts/sync-dim-resources.mjs",
+    "sync:animations": "node scripts/sync-dim-animations.mjs",
+    "preview": "vite preview"
+  },
   "dependencies": {
-    "@pkmn/img": "^0.3.3",
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.5.0",
-    "clsx": "^2.1.1",
-    "framer-motion": "^12.38.0",
-    "gsap": "^3.14.2",
+    "canvas-confetti": "^1.9.4",
     "howler": "^2.2.4",
-    "next": "16.2.1",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "three": "^0.183.2",
-    "zustand": "^5.0.12"
+    "lucide-react": "^1.52.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "@playwright/test": "^1.58.2",
-    "@tailwindcss/postcss": "^4.1.17",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/howler": "^2.2.12",
-    "@types/node": "^20.19.22",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2",
-    "@vitejs/plugin-react": "^6.0.1",
-    "eslint": "^9.38.0",
-    "eslint-config-next": "16.2.1",
-    "jsdom": "^29.0.1",
-    "tailwindcss": "^4.1.17",
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.0"
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/howler": "^2.2.13",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.81.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
   }
 }
